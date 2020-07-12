@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurretController : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class TurretController : MonoBehaviour
     public Transform gun;
     public LineRenderer laze;
     public float fireRate = 0.5f;
+    public Canvas canvas;
+    private int level =1;
+    public Text levelTxt;
+    private int pointForLevelup = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -73,5 +78,27 @@ public class TurretController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position,range);
+    }
+
+    private void OnMouseEnter()
+    {
+        canvas.gameObject.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        canvas.gameObject.SetActive(false);
+    }
+
+    public void LevelUpTurret() 
+    {
+        if (GameManager.instance.playerPoint < pointForLevelup)
+            return;
+        level++;
+        GameManager.instance.playerPoint -= pointForLevelup;
+        damage *= 2;
+        pointForLevelup *= 2;
+
+        levelTxt.text = "Level " + level;
     }
 }

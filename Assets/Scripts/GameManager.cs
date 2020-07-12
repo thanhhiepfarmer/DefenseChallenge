@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
 
     public Text playerPointText;
 
+    public GameObject turretToBuild;
+    public static GameManager instance;
+
+    public GameObject pausePanel;
+
     public void CallEventRestartLevel() 
     {
         if (RestartLevelEvent != null)
@@ -42,8 +47,10 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        instance = this;
         playerPointText = GameObject.Find("PlayerPoint").GetComponent<Text>();
         playerPointText.text = playerPoint.ToString();
+        turretToBuild = null;
     }
 
     // Update is called once per frame
@@ -52,4 +59,21 @@ public class GameManager : MonoBehaviour
         playerPointText.text = playerPoint.ToString();
     }
 
+    public void selectTurretToBuild() 
+    {
+        turretToBuild = (GameObject)Resources.Load("Turret");
+    }
+
+    public void PauseGame() 
+    {
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true);
+    }
+
+    public void UnPauseGame()
+    {
+        Time.timeScale = 1f;
+        pausePanel.SetActive(false);
+
+    }
 }
