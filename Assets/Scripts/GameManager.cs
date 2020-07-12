@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -75,5 +76,25 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
 
+    }
+
+    public void LoadMainMenu() 
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void SaveGameData() 
+    {
+        SaveSystem.SaveGameData();
+        PlayerPrefs.SetInt("ScenceSaved",SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadGameData() 
+    {
+        GameData data = SaveSystem.LoadGameData();
+
+        playerPoint = data.playerPoint;
+        enemyDiedNum = data.enemyKilledNum;
     }
 }

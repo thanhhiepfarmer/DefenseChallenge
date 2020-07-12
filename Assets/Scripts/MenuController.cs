@@ -19,6 +19,13 @@ public class MenuController : MonoBehaviour
 
     public void LoadNewGame() 
     {
-        //SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main");
+    }
+
+    public void LoadSavedGame()
+    {
+        GameManager.instance.LoadGameData();
+        SceneManager.LoadScene("Main");
+        
     }
 }
