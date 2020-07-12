@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     public bool isGameOver;
     public int enemyDiedNum = 0;
+    public int playerPoint = 0;
+
+    public Text playerPointText;
 
     public void CallEventRestartLevel() 
     {
@@ -38,12 +42,14 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        playerPointText = GameObject.Find("PlayerPoint").GetComponent<Text>();
+        playerPointText.text = playerPoint.ToString();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        playerPointText.text = playerPoint.ToString();
     }
+
 }

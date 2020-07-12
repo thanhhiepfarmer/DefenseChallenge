@@ -20,7 +20,7 @@ public class GameWaves : MonoBehaviour
     public Wave[] waves;
     private int currentWaveNo;
     private WaveState state = WaveState.SPAWNING;
-    private float waveTimeCountDown;
+    public float waveTimeCountDown;
     private int nextWave = 0;
     void Start()
     {

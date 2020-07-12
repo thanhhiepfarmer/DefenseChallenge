@@ -29,6 +29,7 @@ public class HitPoint : MonoBehaviour
         { 
             Destroy(gameObject);
             manager.enemyDiedNum++;
+            manager.playerPoint += 1;
         }
     }
 }
